@@ -158,14 +158,13 @@ const categories = [
     { "id": 157, "category": "Boyz II Men Songs", "difficulty": "medium", "type": "entertainment" },
     { "id": 158, "category": "Streaming Apps", "difficulty": "easy", "type": "technology" },
     { "id": 159, "category": "Social Media Platforms", "difficulty": "easy", "type": "technology" },
-    { "id": 160, "category": "Shades of (COLOR)", "difficulty": "easy", "type": "general" },
-    
+    { "id": 160, "category": "Shades of (COLOR)", "difficulty": "easy", "type": "general" }, 
 ];
 
 const newCardBtn = document.getElementById("new-card-btn");
 const startTimerBtn = document.getElementById("start-timer-btn");
-
-let timeLeft = 30 * 1000;
+const pauseTimerBtn = document.getElementById("pause-timer-btn");
+const resetTimerBtn = document.getElementById("reset-timer-btn");
 
 const drawCard = (categories) => {
     timeLeft = 30 * 1000;
@@ -205,11 +204,17 @@ const colorChooser = () => {
     return randomColor;
 }
 
+let intervalId; 
+let timeLeft = 30 * 1000;
 
 const startTimer = () => {
     const timerElement = document.getElementById("timer");
 
-    const intervalId = setInterval(() => {
+    if (intervalId) {
+        clearInterval(intervalId);
+    }
+
+    intervalId = setInterval(() => {
         if (timeLeft <= 0) {
             clearInterval(intervalId);
             timerElement.innerHTML = "00:00:00";
@@ -232,12 +237,27 @@ const pad = (num) => {
     return num < 10 ? "0" + num : num;
 };
 
+const pauseTimer = () => {
+    if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+    }
+};
+
+const resetTimer = () => {
+    pauseTimer();
+    timeLeft = 60000;
+    document.getElementById("timer").innerHTML = "01:00:00";
+    document.getElementById("card").classList.remove("flash");
+};
 
 const init = () => {
     drawCard(categories);
 
     newCardBtn.addEventListener("click", () => drawCard(categories));
     startTimerBtn.addEventListener("click", () => startTimer());
+    resetTimerBtn.addEventListener("click", () => resetTimer());
+    pauseTimerBtn.addEventListener("click", () => pauseTimer());
 }
 
 init();
