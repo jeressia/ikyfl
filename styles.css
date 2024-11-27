@@ -1,0 +1,69 @@
+body{
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: black;
+    transition: background-color 0.3s ease;
+}
+
+@keyframes flashRedWhite {
+    0% {
+        border: 20px solid red;
+    }
+    50% {
+        border: 20px solid white;
+    }
+    100% {
+        border: 20px solid red;
+    }
+}
+
+.flash {
+    animation: flashRedWhite 1s infinite; /* Flash effect that loops every second */
+}
+.card-difficulty{
+    align-self: start;
+    font-size: 18px;
+    text-transform: capitalize;
+    font-style: italic;
+    margin: 0;
+    background-color: #f1f1f1;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+}
+
+.easy {
+    background-color: green;
+}
+
+.medium {
+    background-color: yellow;
+}
+
+.hard {
+    background-color: red;
+}
+
+.card-category{
+    font-size: 45px;
+    font-weight: bold;
+    margin: 20px;
+    padding: 125px 0;
+}
+
+.card-type {
+    font-size: 14px;
+    text-transform: uppercase;
+
+}
