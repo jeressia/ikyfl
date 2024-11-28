@@ -251,6 +251,28 @@ const resetTimer = () => {
     document.getElementById("card").classList.remove("flash");
 };
 
+// entertainment
+// food
+// games
+// geography
+// brands
+// education
+// culture
+// celebrities
+// sports
+// politics
+// music
+// religion
+// nature
+// general
+// travel
+// science
+// literature
+
+const sortByCategory = (categories, category) => {
+    return categories.filter((c) => c.type === category);
+};
+
 const init = () => {
     drawCard(categories);
 
